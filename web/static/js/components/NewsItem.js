@@ -1,10 +1,11 @@
-import React from "react"
+import React from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
-import { Grid, Col, Panel, Button } from 'react-bootstrap'
+import { Grid, Col, Panel } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-import CategoryList from './CategoryList'
+import CategoryList from './partials/CategoryList'
+import { MainPageButton, BackButton } from './Helpers'
 
 const NewsItemQuery = gql`
 	query newsItem($id: Int!) {
@@ -18,15 +19,11 @@ const NewsItemQuery = gql`
 
 export default class NewsItem extends React.Component {
 
-	renderBackButton() {
-		return <Button onClick={this.props.history.goBack}>Go Back</Button>
-	}
-
 	render() {
-		const newsId = this.props.match.params.id;
+		const newsId = +this.props.match.params.id;
 
 		return (
-			<Query query={NewsItemQuery} variables={{id: +newsId}}>
+			<Query query={NewsItemQuery} variables={{id: newsId}}>
 				{({loading, error, data}) => {
 					if (loading || error) return null
 
@@ -35,16 +32,17 @@ export default class NewsItem extends React.Component {
 					return (
 						<Grid>
 							<div>
-								{this.renderBackButton()}
+								<MainPageButton history={this.props.history} />
+								<BackButton history={this.props.history} />
 							</div>
 
 							<hr/>
 
-							<Col xs={12} md={2} className="pull-left">
+							<Col xs={12} md={3} className="pull-left">
 								<CategoryList />
 							</Col>
 
-							<Col xs={12} md={10} className="pull-right">
+							<Col xs={12} md={9} className="pull-right">
 								<Panel bsStyle="info">
 									<Panel.Heading>
 										<Panel.Title componentClass="h2">{newsItem.title}</Panel.Title>

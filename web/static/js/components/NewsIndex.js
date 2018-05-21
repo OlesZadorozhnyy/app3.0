@@ -1,52 +1,13 @@
-import React from "react"
+import React from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-import { ListGroup, ListGroupItem, Grid, Row, Col } from 'react-bootstrap'
+import { Grid, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-import CategoryList from './CategoryList'
+import CategoryList from './partials/CategoryList'
+import { SimpleNewsList, TopNewsList } from './partials/NewsList'
 
 class NewsIndex extends React.Component {
-
-	renderTopNews(news) {
-		return news.map((newsItem, index) => {
-			const url = this.getNewsItemRoute(newsItem.id)
-
-			return (
-				<Link key={index} to={url}>
-					<ListGroupItem header={newsItem.title} href={url}>
-						<b>{newsItem.description}</b>
-					</ListGroupItem>
-				</Link>
-			)
-		})
-	}
-
-	renderSimpleNews(news) {
-		return news.map((newsItem, index) => {
-			const url = this.getNewsItemRoute(newsItem.id)
-
-			return (
-				<Link key={index} to={url}>
-					<ListGroupItem href={url}>
-						<Row>
-							<Col xs={2}>
-								<small>{newsItem.time}</small>
-							</Col>
-
-							<Col xs={10}>
-								<span>{newsItem.title}</span>
-							</Col>
-						</Row>
-					</ListGroupItem>
-				</Link>
-			)
-		})
-	}
-
-	getNewsItemRoute(id) {
-		return '/news/' + id
-	}
 
 	render() {
 		const { topNews, simpleNews } = this.props.data
@@ -55,17 +16,17 @@ class NewsIndex extends React.Component {
 
 		return (
 			<Grid>
-				<Col xs={12} md={2} className="pull-left">
+				<Col xs={12} md={3} className="pull-left">
 					<CategoryList />
 				</Col>
 
-				<Col xs={12} md={10} className="pull-right">
+				<Col xs={12} md={9} className="pull-right">
 					<Col xs={12}>
-						<ListGroup>{this.renderTopNews(topNews)}</ListGroup>
+						<TopNewsList news={topNews} />
 					</Col>
 
 					<Col xs={12}>
-						<ListGroup>{this.renderSimpleNews(simpleNews)}</ListGroup>
+						<SimpleNewsList news={simpleNews} />
 					</Col>
 				</Col>
 			</Grid>
