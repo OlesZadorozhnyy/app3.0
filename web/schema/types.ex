@@ -20,4 +20,12 @@ defmodule Myapp.Schema.Types do
     field :time, :string, resolve: &Myapp.NewsResolver.time/3
     field :category, :category, resolve: assoc(:category)
   end
+
+  input_object :news_data do
+    field :category_id, :string
+    field :title, :string
+    field :description, :string
+    field :text, :string
+    field :is_top, :boolean
+  end
 end

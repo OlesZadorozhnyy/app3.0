@@ -31,4 +31,12 @@ defmodule Myapp.Schema do
       resolve &Myapp.NewsResolver.find/2
     end
   end
+
+  mutation do
+    field :create_news, type: :news do
+      arg :data, non_null(:news_data)
+
+      resolve &Myapp.NewsResolver.createNews/2
+    end
+  end
 end

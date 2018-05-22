@@ -1,6 +1,4 @@
 import React from 'react'
-import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
 import { ListGroup, ListGroupItem, Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 

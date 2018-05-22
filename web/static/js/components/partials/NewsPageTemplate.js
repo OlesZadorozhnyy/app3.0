@@ -1,22 +1,20 @@
 import React from 'react'
 import { Grid, Col } from 'react-bootstrap'
 
-import { MainPageButton, BackButton } from '../utils/Helpers'
+import { MainPageButton, CreateNewsButton, BackButton } from '../utils/Buttons'
 import CategoryList from './CategoryList'
 
 export default class NewsPageTemplate extends React.Component {
 
 	renderRouteButtons() {
-		if (this.props.location.pathname == '/') return
+		if (this.props.location.pathname == '/') return (
+			<CreateNewsButton history={this.props.history} />
+		)
 
 		return (
 			<div>
-				<div>
-					<MainPageButton history={this.props.history} />
-					<BackButton history={this.props.history} />
-				</div>
-
-				<hr/>
+				<MainPageButton history={this.props.history} />
+				<BackButton history={this.props.history} />
 			</div>
 		)
 	}
@@ -24,7 +22,11 @@ export default class NewsPageTemplate extends React.Component {
 	render() {
 		return (
 			<Grid>
-				{this.renderRouteButtons()}
+				<div>
+					{this.renderRouteButtons()}
+
+					<hr/>
+				</div>
 
 				<Col xs={12} md={3} className="pull-left">
 					<CategoryList />

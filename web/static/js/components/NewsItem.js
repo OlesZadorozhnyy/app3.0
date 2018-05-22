@@ -1,19 +1,9 @@
 import React from 'react'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
 import { Panel } from 'react-bootstrap'
 
 import NewsPageTemplate from './partials/NewsPageTemplate'
-
-const NewsItemQuery = gql`
-	query newsItem($id: Int!) {
-		newsItem (id: $id) {
-			title
-			description
-			text
-		}
-	}
-`
+import { NewsItemQuery } from '../queries'
 
 export default class NewsItem extends React.Component {
 

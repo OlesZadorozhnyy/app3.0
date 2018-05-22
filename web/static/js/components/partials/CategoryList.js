@@ -1,8 +1,9 @@
 import React from 'react'
 import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+
+import { CategoriesQuery } from '../../queries'
 
 class CategoryList extends React.Component {
 
@@ -37,11 +38,4 @@ class CategoryList extends React.Component {
 	}
 }
 
-export default graphql(gql`
-	query {
-		categories {
-			id
-			title
-		}
-	}
-`)(CategoryList)
+export default graphql(CategoriesQuery)(CategoryList)

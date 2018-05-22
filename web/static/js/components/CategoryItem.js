@@ -1,22 +1,10 @@
 import React from 'react'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
 
 import { SimpleNewsList } from './partials/NewsList'
 import NewsPageTemplate from './partials/NewsPageTemplate'
 
-const CategoryItemQuery = gql`
-	query category($id: Int!) {
-		category (id: $id) {
-			title
-			news {
-				id
-				title
-				time
-			}
-		}
-	}
-`
+import { CategoryItemQuery } from '../queries'
 
 export default class CategoryItem extends React.Component {
 

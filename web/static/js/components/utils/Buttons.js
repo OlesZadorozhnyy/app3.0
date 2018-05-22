@@ -12,6 +12,17 @@ class MainPageButton extends React.Component {
 	}
 }
 
+class CreateNewsButton extends React.Component {
+
+	onClickButton() {
+		this.props.history.push('/news/create')
+	}
+
+	render() {
+		return <Button onClick={this.onClickButton.bind(this)}>Create news</Button>
+	}
+}
+
 class BackButton extends React.Component {
 
 	render() {
@@ -21,5 +32,6 @@ class BackButton extends React.Component {
 
 export {
 	MainPageButton,
+	CreateNewsButton,
 	BackButton
 }

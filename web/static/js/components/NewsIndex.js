@@ -1,12 +1,16 @@
 import React from 'react'
 import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
 import { Col } from 'react-bootstrap'
 
 import { SimpleNewsList, TopNewsList } from './partials/NewsList'
 import NewsPageTemplate from './partials/NewsPageTemplate'
+import { SpecificNewsQuery } from '../queries'
 
 class NewsIndex extends React.Component {
+
+	componentDidMount() {
+		this.props.data.refetch()
+	}
 
 	render() {
 		const { topNews, simpleNews } = this.props.data
@@ -27,18 +31,4 @@ class NewsIndex extends React.Component {
 	}
 }
 
-export default graphql(gql`
-	query {
-		topNews(limit: 3) {
-			id
-			title
-			description,
-			insertedAt
-		}
-		simpleNews(limit: 20) {
-			id
-			title,
-			time
-		}
-	}
-`)(NewsIndex)
+export default graphql(SpecificNewsQuery)(NewsIndex)

@@ -31,6 +31,13 @@ defmodule Myapp.NewsResolver do
 		{:ok, time}
 	end
 
+	def createNews(%{data: news}, _info) do
+		IO.inspect news
+		changeset = News.changeset(%News{}, news)
+
+		Repo.insert(changeset)
+	end
+
 	defp findNews(isTop, limit) do
 		query = from n in News,
 			where: n.is_top == ^isTop,
