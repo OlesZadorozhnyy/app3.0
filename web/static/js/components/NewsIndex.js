@@ -1,11 +1,10 @@
 import React from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-import { Grid, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Col } from 'react-bootstrap'
 
-import CategoryList from './partials/CategoryList'
 import { SimpleNewsList, TopNewsList } from './partials/NewsList'
+import NewsPageTemplate from './partials/NewsPageTemplate'
 
 class NewsIndex extends React.Component {
 
@@ -15,21 +14,15 @@ class NewsIndex extends React.Component {
 		if (!topNews || !simpleNews) return null
 
 		return (
-			<Grid>
-				<Col xs={12} md={3} className="pull-left">
-					<CategoryList />
+			<NewsPageTemplate {...this.props}>
+				<Col xs={12}>
+					<TopNewsList news={topNews} />
 				</Col>
 
-				<Col xs={12} md={9} className="pull-right">
-					<Col xs={12}>
-						<TopNewsList news={topNews} />
-					</Col>
-
-					<Col xs={12}>
-						<SimpleNewsList news={simpleNews} />
-					</Col>
+				<Col xs={12}>
+					<SimpleNewsList news={simpleNews} />
 				</Col>
-			</Grid>
+			</NewsPageTemplate>
 		)
 	}
 }

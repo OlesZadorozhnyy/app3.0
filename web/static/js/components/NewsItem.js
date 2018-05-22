@@ -1,11 +1,9 @@
 import React from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
-import { Grid, Col, Panel } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Panel } from 'react-bootstrap'
 
-import CategoryList from './partials/CategoryList'
-import { MainPageButton, BackButton } from './Helpers'
+import NewsPageTemplate from './partials/NewsPageTemplate'
 
 const NewsItemQuery = gql`
 	query newsItem($id: Int!) {
@@ -30,31 +28,18 @@ export default class NewsItem extends React.Component {
 					const { newsItem } = data
 
 					return (
-						<Grid>
-							<div>
-								<MainPageButton history={this.props.history} />
-								<BackButton history={this.props.history} />
-							</div>
-
-							<hr/>
-
-							<Col xs={12} md={3} className="pull-left">
-								<CategoryList />
-							</Col>
-
-							<Col xs={12} md={9} className="pull-right">
-								<Panel bsStyle="info">
-									<Panel.Heading>
-										<Panel.Title componentClass="h2">{newsItem.title}</Panel.Title>
-									</Panel.Heading>
-									<Panel.Body>
-										<b>{newsItem.description}</b>
-										<hr/>
-										{newsItem.text}
-									</Panel.Body>
-								</Panel>
-							</Col>
-						</Grid>
+						<NewsPageTemplate {...this.props}>
+							<Panel bsStyle="info">
+								<Panel.Heading>
+									<Panel.Title componentClass="h2">{newsItem.title}</Panel.Title>
+								</Panel.Heading>
+								<Panel.Body>
+									<b>{newsItem.description}</b>
+									<hr/>
+									{newsItem.text}
+								</Panel.Body>
+							</Panel>
+						</NewsPageTemplate>
 					);
 				}}
 			</Query>
