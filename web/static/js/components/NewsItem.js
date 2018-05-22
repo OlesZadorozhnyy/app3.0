@@ -13,12 +13,12 @@ const NewsItemQuery = gql`
 			text
 		}
 	}
-`;
+`
 
 export default class NewsItem extends React.Component {
 
 	render() {
-		const newsId = +this.props.match.params.id;
+		const newsId = +this.props.match.params.id
 
 		return (
 			<Query query={NewsItemQuery} variables={{id: newsId}}>
@@ -40,9 +40,9 @@ export default class NewsItem extends React.Component {
 								</Panel.Body>
 							</Panel>
 						</NewsPageTemplate>
-					);
+					)
 				}}
 			</Query>
-		);
+		)
 	}
 }

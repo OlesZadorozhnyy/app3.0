@@ -33,7 +33,7 @@ class CategoryList extends React.Component {
 			<ListGroup>
 				{this.renderCategories(categories)}
 			</ListGroup>
-		);
+		)
 	}
 }
 
@@ -44,4 +44,4 @@ export default graphql(gql`
 			title
 		}
 	}
-`)(CategoryList);
+`)(CategoryList)

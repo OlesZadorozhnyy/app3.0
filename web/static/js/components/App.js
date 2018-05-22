@@ -1,8 +1,8 @@
 import React from "react"
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import NewsIndex from './NewsIndex'
-import NewsItem from './NewsItem';
+import NewsItem from './NewsItem'
 import CategoryItem from './CategoryItem'
 
 export default class App extends React.Component {
@@ -15,6 +15,6 @@ export default class App extends React.Component {
 					<Route exact path="/category/:id" component={CategoryItem} />
 				</div>
 			</Router>
-		);
+		)
 	}
 }

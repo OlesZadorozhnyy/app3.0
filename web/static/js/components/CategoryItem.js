@@ -16,12 +16,12 @@ const CategoryItemQuery = gql`
 			}
 		}
 	}
-`;
+`
 
 export default class CategoryItem extends React.Component {
 
 	render() {
-		const categoryId = +this.props.match.params.id;
+		const categoryId = +this.props.match.params.id
 
 		return (
 			<Query query={CategoryItemQuery} variables={{id: categoryId}}>
@@ -38,9 +38,9 @@ export default class CategoryItem extends React.Component {
 								<SimpleNewsList news={category.news} />
 							</div>
 						</NewsPageTemplate>
-					);
+					)
 				}}
 			</Query>
-		);
+		)
 	}
 }

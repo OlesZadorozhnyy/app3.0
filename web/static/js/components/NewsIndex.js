@@ -41,4 +41,4 @@ export default graphql(gql`
 			time
 		}
 	}
-`)(NewsIndex);
+`)(NewsIndex)
